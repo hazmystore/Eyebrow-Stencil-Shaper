@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eyebrow Stencil Shaper - FashionStore.id</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #f5f7fa 0%, #ffeef8 100%);
+        }
+        
+        .product-shadow {
+            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.1);
+        }
+        
+        .badge-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(236, 72, 153, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(236, 72, 153, 0);
+            }
+        }
+        
+        .slide-in {
+            animation: slideIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .slide-out {
+            animation: slideOut 0.5s ease-out forwards;
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+        }
+        
+        .modal {
+            transition: all 0.3s ease;
+        }
+        
+        .modal-content {
+            transition: all 0.3s ease;
+            transform: scale(0.8);
+        }
+        
+        .modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+        
+        .swipe-handle {
+            width: 40px;
+            height: 4px;
+            background-color: #ccc;
+            border-radius: 2px;
+            margin: 8px auto;
+            cursor: pointer;
+        }
+        
+        .gallery-thumbnail {
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-thumbnail:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .price-strikethrough {
+            position: relative;
+        }
+        
+        .price-strikethrough:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            right: 0;
+            border-top: 2px solid #ef4444;
+            transform: rotate(-10deg);
+        }
+    </style>
+</head>
+<body class="gradient-bg">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center">
+                <img src="https://scontent.fsub8-2.fna.fbcdn.net/v/t39.30808-6/340280384_202238192515306_1857026655624969742_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=wPGBwtjhLmkQ7kNvwFWarC0&_nc_oc=Adk584KJdEBQGIsCO-5NDzP6Dj2l-9eha2E5J1jq8wHFIDjogj2LjXZVdFL4MqkhE5c&_nc_zt=23&_nc_ht=scontent.fsub8-2.fna&_nc_gid=zH8mcyyDT5rlH_nU3-kJcw&oh=00_AfXpfEPotZxf43a8MIirU7aRrY3NWxXt4DRHrox7ZRuYqg&oe=68B2295E" 
+                     alt="FashionStore.id Logo" class="h-10 w-10 rounded-full object-cover">
+                <span class="ml-3 text-xl font-bold text-gray-800">FashionStore.id</span>
+                <span class="ml-2 px-2 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full flex items-center">
+                    <i class="fas fa-check-circle mr-1"></i> Verified
+                </span>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#features" class="text-gray-700 hover:text-pink-500 transition">Fitur</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-pink-500 transition">Testimoni</a>
+                <a href="#how-to-use" class="text-gray-700 hover:text-pink-500 transition">Cara Pakai</a>
+                <a href="#faq" class="text-gray-700 hover:text-pink-500 transition">FAQ</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-2 px-4 shadow-lg">
+            <a href="#features" class="block py-2 text-gray-700 hover:text-pink-500 transition">Fitur</a>
+            <a href="#testimonials" class="block py-2 text-gray-700 hover:text-pink-500 transition">Testimoni</a>
+            <a href="#how-to-use" class="block py-2 text-gray-700 hover:text-pink-500 transition">Cara Pakai</a>
+            <a href="#faq" class="block py-2 text-gray-700 hover:text-pink-500 transition">FAQ</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-12 md:py-20">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 leading-tight mb-6">
+                    Eyebrow Stencil Shaper <br>
+                    <span class="text-pink-500">Alis Sempurna dalam 30 Detik!</span>
+                </h1>
+                <p class="text-lg text-gray-600 mb-8">
+                    Dapatkan alis rapi dan simetris sempurna setiap hari tanpa perlu ke salon mahal. 
+                    Solusi praktis untuk wanita sibuk yang ingin tampil sempurna!
+                </p>
+                
+                <div class="flex items-center mb-8">
+                    <div class="flex -space-x-2">
+                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/1.jpg" alt="">
+                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/2.jpg" alt="">
+                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/3.jpg" alt="">
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-700">
+                            <span class="font-bold text-pink-500">1,250+</span> wanita sudah membuktikan!
+                        </p>
+                        <div class="flex items-center">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-600">4.8/5 (1,024 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-pink-50 border-l-4 border-pink-500 p-4 mb-8">
+                    <div class="flex">
+                        <div class="flex-shrink-0 text-pink-500">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm text-pink-700">
+                                <span class="font-bold">PROMO KHUSUS:</span> Gratis ongkir untuk pembayaran transfer hari ini! 
+                                <span id="countdown" class="font-bold text-pink-600"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#order" class="inline-block bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
+                    BELI SEKARANG <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+            
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative product-shadow rounded-2xl overflow-hidden">
+                    <img src="https://cdn.newfastcdn.com/image/38c0226c5b25b592c10ae8f7a83ee805a4435f44-600.png" 
+                         alt="Eyebrow Stencil Shaper" class="w-full h-auto rounded-2xl">
+                    <div class="absolute -top-4 -right-4 bg-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full badge-pulse">
+                        BEST SELLER
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="py-8 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center items-center gap-6 md:gap-12">
+                <div class="flex items-center">
+                    <i class="fas fa-shield-alt text-3xl text-green-500 mr-3"></i>
+                    <span class="text-gray-700 font-medium">100% Original</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-truck text-3xl text-blue-500 mr-3"></i>
+                    <span class="text-gray-700 font-medium">Gratis Ongkir</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-undo text-3xl text-purple-500 mr-3"></i>
+                    <span class="text-gray-700 font-medium">Garansi 7 Hari</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-lock text-3xl text-yellow-500 mr-3"></i>
+                    <span class="text-gray-700 font-medium">Pembayaran Aman</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Solution Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Masalah Alis yang Sering Dihadapi Wanita</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Kami memahami frustrasi Anda dalam merapikan alis setiap hari
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <div class="flex items-start mb-4">
+                        <div class="flex-shrink-0 bg-red-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-times-circle text-red-500 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Tanpa Eyebrow Stencil</h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Alis tidak simetris dan berantakan</li>
+                                <li>Membutuhkan waktu lama untuk merapikan</li>
+                                <li>Hasil tidak konsisten setiap hari</li>
+                                <li>Risiko mencukur terlalu banyak</li>
+                                <li>Harus sering ke salon untuk waxing</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-md border-2 border-pink-500 relative">
+                    <div class="absolute -top-4 -right-4 bg-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                        SOLUSI
+                    </div>
+                    <div class="flex items-start mb-4">
+                        <div class="flex-shrink-0 bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Dengan Eyebrow Stencil Shaper</h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Alis simetris sempurna dalam 30 detik</li>
+                                <li>Praktis digunakan kapan saja di rumah</li>
+                                <li>Hasil konsisten seperti salon profesional</li>
+                                <li>14 bentuk berbeda untuk semua jenis wajah</li>
+                                <li>Hemat waktu dan uang dalam jangka panjang</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Kenapa Eyebrow Stencil Shaper Kami Berbeda?</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Produk premium dengan fitur unggulan yang tidak dimiliki produk sejenis
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+                    <div class="flex justify-center mb-4">
+                        <img src="https://cdn.newfastcdn.com/image/07de24c24dbb56fb3d526e8925d2475d6b93d12b-200.gif" 
+                             alt="Easy to Use" class="h-40 object-contain">
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Mudah Digunakan</h3>
+                    <p class="text-gray-600 text-center">
+                        Cukup tempelkan, isi dengan pensil alis atau bubuk, dan dapatkan alis sempurna dalam hitungan detik!
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+                    <div class="flex justify-center mb-4">
+                        <img src="https://cdn.newfastcdn.com/image/666c08ab1a4f6fa37627c9e8498127eb96ce3c48-200.jpeg" 
+                             alt="14 Shapes" class="h-40 object-contain">
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">14 Bentuk Berbeda</h3>
+                    <p class="text-gray-600 text-center">
+                        Tersedia berbagai bentuk untuk semua jenis wajah dan preferensi, dari natural hingga bold look.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+                    <div class="flex justify-center mb-4">
+                        <img src="https://cdn.newfastcdn.com/image/1d4cc2f8915b5179862f18778b64937f5ea758c8-200.jpeg" 
+                             alt="Reusable" class="h-40 object-contain">
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Bisa Dipakai Berulang</h3>
+                    <p class="text-gray-600 text-center">
+                        Terbuat dari bahan premium yang tahan lama dan bisa dicuci untuk digunakan berulang kali.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+                    <div class="flex justify-center mb-4">
+                        <img src="https://cdn.newfastcdn.com/image/59679ade86acc49526930cf854eab1a2ccce1ac5-200.jpeg" 
+                             alt="Portable" class="h-40 object-contain">
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Portable</h3>
+                    <p class="text-gray-600 text-center">
+                        Ringkas dan mudah dibawa kemana saja, cocok untuk traveling atau makeup on-the-go.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+                    <div class="flex justify-center mb-4">
+                        <img src="https://cdn.newfastcdn.com/image/38b346e23e68c5c29aca339265166b3f639c4a1f-200.png" 
+                             alt="Hypoallergenic" class="h-40 object-contain">
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Hypoallergenic</h3>
+                    <p class="text-gray-600 text-center">
+                        Aman untuk kulit sensitif, tidak menyebabkan iritasi atau alergi.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+                    <div class="flex justify-center mb-4">
+                        <img src="https://cdn.newfastcdn.com/image/74450e721ab252cd837df72b8c22a78a79827dd8-200.png" 
+                             alt="Money Back" class="h-40 object-contain">
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Garansi Kepuasan</h3>
+                    <p class="text-gray-600 text-center">
+                        Tidak puas? Kami memberikan garansi uang kembali dalam 7 hari.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Galeri Produk</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Lihat lebih dekat kualitas Eyebrow Stencil Shaper kami
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="gallery-thumbnail cursor-pointer" onclick="openModal('https://cdn.newfastcdn.com/image/38c0226c5b25b592c10ae8f7a83ee805a4435f44-600.png')">
+                    <img src="https://cdn.newfastcdn.com/image/38c0226c5b25b592c10ae8f7a83ee805a4435f44-600.png" 
+                         alt="Eyebrow Stencil Shaper" class="w-full h-40 object-cover rounded-lg">
+                </div>
+                <div class="gallery-thumbnail cursor-pointer" onclick="openModal('https://cdn.newfastcdn.com/image/07de24c24dbb56fb3d526e8925d2475d6b93d12b-200.gif')">
+                    <img src="https://cdn.newfastcdn.com/image/07de24c24dbb56fb3d526e8925d2475d6b93d12b-200.gif" 
+                         alt="Eyebrow Stencil in Use" class="w-full h-40 object-cover rounded-lg">
+                </div>
+                <div class="gallery-thumbnail cursor-pointer" onclick="openModal('https://cdn.newfastcdn.com/image/666c08ab1a4f6fa37627c9e8498127eb96ce3c48-200.jpeg')">
+                    <img src="https://cdn.newfastcdn.com/image/666c08ab1a4f6fa37627c9e8498127eb96ce3c48-200.jpeg" 
+                         alt="Different Shapes" class="w-full h-40 object-cover rounded-lg">
+                </div>
+                <div class="gallery-thumbnail cursor-pointer" onclick="openModal('https://cdn.newfastcdn.com/image/1d4cc2f8915b5179862f18778b64937f5ea758c8-200.jpeg')">
+                    <img src="https://cdn.newfastcdn.com/image/1d4cc2f8915b5179862f18778b64937f5ea758c8-200.jpeg" 
+                         alt="Reusable Material" class="w-full h-40 object-cover rounded-lg">
+                </div>
+                <div class="gallery-thumbnail cursor-pointer" onclick="openModal('https://cdn.newfastcdn.com/image/59679ade86acc49526930cf854eab1a2ccce1ac5-200.jpeg')">
+                    <img src="https://cdn.newfastcdn.com/image/59679ade86acc49526930cf854eab1a2ccce1ac5-200.jpeg" 
+                         alt="Portable Package" class="w-full h-40 object-cover rounded-lg">
+                </div>
+                <div class="gallery-thumbnail cursor-pointer" onclick="openModal('https://cdn.newfastcdn.com/image/38b346e23e68c5c29aca339265166b3f639c4a1f-200.png')">
+                    <img src="https://cdn.newfastcdn.com/image/38b346e23e68c5c29aca339265166b3f639c4a1f-200.png" 
+                         alt="Hypoallergenic" class="w-full h-40 object-cover rounded-lg">
+                </div>
+                <div class="gallery-thumbnail cursor-pointer" onclick="openModal('https://cdn.newfastcdn.com/image/74450e721ab252cd837df72b8c22a78a79827dd8-200.png')">
+                    <img src="https://cdn.newfastcdn.com/image/74450e721ab252cd837df72b8c22a78a79827dd8-200.png" 
+                         alt="Money Back Guarantee" class="w-full h-40 object-cover rounded-lg">
+                </div>
+                <div class="gallery-thumbnail cursor-pointer" onclick="openModal('https://cdn.newfastcdn.com/image/881b5b41ec082705d66f2d62864d6d8c073991b8-200.png')">
+                    <img src="https://cdn.newfastcdn.com/image/881b5b41ec082705d66f2d62864d6d8c073991b8-200.png" 
+                         alt="Complete Set" class="w-full h-40 object-cover rounded-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Use Section -->
+    <section id="how-to-use" class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Cara Menggunakan Eyebrow Stencil Shaper</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Dapatkan alis sempurna hanya dalam 3 langkah mudah
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <div class="bg-pink-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-pink-600 text-2xl font-bold">1</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Pilih Bentuk</h3>
+                    <p class="text-gray-600">
+                        Pilih stencil dengan bentuk yang sesuai dengan bentuk wajah dan preferensi Anda
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <div class="bg-pink-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-pink-600 text-2xl font-bold">2</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Tempelkan</h3>
+                    <p class="text-gray-600">
+                        Tempelkan stencil pada posisi alis yang diinginkan dan tekan perlahan
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <div class="bg-pink-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-pink-600 text-2xl font-bold">3</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Isi dengan Warna</h3>
+                    <p class="text-gray-600">
+                        Gunakan pensil alis atau bubuk untuk mengisi area dalam stencil, lalu angkat perlahan
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Apa Kata Mereka?</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Testimoni asli dari pelanggan yang sudah mencoba Eyebrow Stencil Shaper kami
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" 
+                             alt="Jessica" class="w-12 h-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-gray-800">Jessica - Mahasiswa</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "Sebagai mahasiswa yang sibuk, produk ini sangat membantu! Alis saya selalu rapi dalam waktu singkat. Hasilnya natural banget, teman-teman pada nanya ke salon mana saya waxing."
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" 
+                             alt="Dewi" class="w-12 h-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-gray-800">Dewi - Ibu Rumah Tangga</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "Setelah punya anak, waktu untuk salon jadi sangat terbatas. Produk ini solusi banget! Bisa rapikan alis sambil nungguin anak tidur. Hasilnya konsisten setiap hari."
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" 
+                             alt="Rina" class="w-12 h-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-gray-800">Rina - Dokter</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "Sebagai dokter yang harus tampil profesional, alis rapi itu penting. Produk ini sangat membantu di pagi hari yang sibuk. Bentuknya simetris dan natural, pas untuk wajah saya."
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/75.jpg" 
+                             alt="Sari" class="w-12 h-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-gray-800">Sari - Pengusaha</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "Sebagai pengusaha, penampilan itu penting untuk bisnis. Produk ini menghemat waktu dan uang saya yang biasanya habis untuk ke salon. Kualitasnya premium dan tahan lama."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Pertanyaan yang Sering Diajukan</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Temukan jawaban untuk pertanyaan umum tentang produk kami
+                </p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-4">
+                    <button class="faq-question w-full text-left p-6 focus:outline-none flex justify-between items-center">
+                        <span class="font-semibold text-gray-800">Apa bahan yang digunakan untuk membuat stencil ini?</span>
+                        <i class="fas fa-chevron-down text-pink-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-6 hidden">
+                        <p class="text-gray-600">
+                            Eyebrow Stencil Shaper kami terbuat dari bahan plastik PET berkualitas tinggi yang fleksibel, tahan lama, dan hypoallergenic. Aman untuk semua jenis kulit termasuk kulit sensitif.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-4">
+                    <button class="faq-question w-full text-left p-6 focus:outline-none flex justify-between items-center">
+                        <span class="font-semibold text-gray-800">Berapa lama stencil ini bisa bertahan?</span>
+                        <i class="fas fa-chevron-down text-pink-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-6 hidden">
+                        <p class="text-gray-600">
+                            Dengan perawatan yang tepat (dicuci setelah digunakan dan disimpan di tempat kering), stencil ini bisa bertahan hingga 1 tahun atau lebih. Banyak pelanggan kami yang masih menggunakan stencil yang sama setelah 2 tahun!
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-4">
+                    <button class="faq-question w-full text-left p-6 focus:outline-none flex justify-between items-center">
+                        <span class="font-semibold text-gray-800">Apakah produk ini cocok untuk pemula?</span>
+                        <i class="fas fa-chevron-down text-pink-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-6 hidden">
+                        <p class="text-gray-600">
+                            Sangat cocok! Produk ini dirancang untuk memudahkan semua orang, termasuk pemula. Dalam paket termasuk panduan lengkap cara penggunaan untuk membantu Anda mendapatkan hasil terbaik.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-4">
+                    <button class="faq-question w-full text-left p-6 focus:outline-none flex justify-between items-center">
+                        <span class="font-semibold text-gray-800">Bagaimana cara memilih bentuk yang tepat untuk wajah saya?</span>
+                        <i class="fas fa-chevron-down text-pink-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-6 hidden">
+                        <p class="text-gray-600">
+                            Kami menyertakan panduan pemilihan bentuk alis berdasarkan bentuk wajah dalam setiap paket. Anda juga bisa mencoba beberapa bentuk berbeda untuk menemukan yang paling cocok dengan preferensi Anda.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-4">
+                    <button class="faq-question w-full text-left p-6 focus:outline-none flex justify-between items-center">
+                        <span class="font-semibold text-gray-800">Bagaimana cara mencucinya?</span>
+                        <i class="fas fa-chevron-down text-pink-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-6 hidden">
+                        <p class="text-gray-600">
+                            Cukup bilas dengan air hangat dan sabun lembut, lalu keringkan dengan tisu atau lap bersih. Hindari menggunakan alkohol atau pembersih keras lainnya yang bisa merusak material.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section id="order" class="py-16 bg-pink-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-8">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">Eyebrow Stencil Shaper</h2>
+                        <div class="flex items-center mb-6">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="ml-2 text-gray-600">4.8/5 (1,024 reviews)</span>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-gray-700">14 bentuk berbeda untuk semua jenis wajah</span>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-gray-700">Bahan premium yang tahan lama</span>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-gray-700">Mudah digunakan bahkan untuk pemula</span>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-gray-700">Garansi uang kembali 7 hari</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-exclamation-triangle text-yellow-500"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm text-yellow-700">
+                                        <span class="font-bold">PERHATIAN:</span> Stok terbatas! Hanya tersisa <span id="stock-counter" class="font-bold text-red-500">23</span> set lagi.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-eye text-gray-500 mr-2"></i>
+                            <span class="text-gray-600"><span id="view-counter">1,284</span> orang sedang melihat produk ini</span>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/2 bg-gray-50 p-8">
+                        <div class="text-center mb-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Pilih Paket Anda</h3>
+                            <p class="text-gray-600">Dapatkan harga terbaik hari ini!</p>
+                        </div>
+                        
+                        <div class="grid gap-4 mb-6">
+                            <div class="bg-white p-4 rounded-lg border-2 border-pink-500 relative">
+                                <div class="absolute -top-3 -right-3 bg-pink-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                                    POPULER
+                                </div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">1 SET (40 PCS)</h4>
+                                        <p class="text-sm text-gray-600">Cukup untuk 1-2 orang</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-gray-500 text-sm price-strikethrough">Rp 223.500</p>
+                                        <p class="text-xl font-bold text-pink-600">Rp 149.000</p>
+                                    </div>
+                                </div>
+                                <button type="button" onclick="ooe('submit', '68aeeb382186f7e58a0d3250', {variant: '1 SET (40 PCS)'})" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg transition">
+                                    Pilih Paket Ini
+                                </button>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">2 SET (80 PCS)</h4>
+                                        <p class="text-sm text-gray-600">Cocok untuk keluarga atau hadiah</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-gray-500 text-sm price-strikethrough">Rp 277.500</p>
+                                        <p class="text-xl font-bold text-pink-600">Rp 185.000</p>
+                                    </div>
+                                </div>
+                                <button type="button" onclick="ooe('submit', '68aeeb382186f7e58a0d3250', {variant: '2 SET (80 PCS)'})" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg transition">
+                                    Pilih Paket Ini
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
+                            <div class="flex">
+                                <div class="flex-shrink-0 text-green-500">
+                                    <i class="fas fa-gift"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm text-green-700">
+                                        <span class="font-bold">BONUS KHUSUS:</span> Gratis ongkir untuk pembayaran transfer hari ini! 
+                                        <span id="countdown-bottom" class="font-bold"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Order Form -->
+                        <div class="ooef">
+                            <form class="orderonline-embed-form" data-username="elsa" data-product-slug="eyebrow-stencil-shaper" data-product-id="68aeeb382186f7e58a0d3250" id="oo-embed-form-eyebrow-stencil-shaper-4763" data-origin="orderonline">
+                                <div class="ooef-loader"><style>.ooef-loader{visibility: hidden;opacity: 0;position: absolute;left: 0;right: 0;top: 0;bottom: 0;display: flex;justify-content: center;align-items: center;flex-direction: column;animation: ooLoadingIn 10s ease;-webkit-animation: ooLoadingIn 10s ease;animation-fill-mode: forwards;overflow: hidden}@keyframes ooLoadingIn{0%{visibility: hidden;opacity: 0}20%{visibility: visible;opacity: 0}100%{visibility: visible;opacity: 1}}@-webkit-keyframes ooLoadingIn{0%{visibility: hidden;opacity: 0}20%{visibility: visible;opacity: 0}100%{visibility: visible;opacity: 1}}.ooef-loader>div,.ooef-loader>div:after{border-radius: 50%;width: 2.5rem;height: 2.5rem}.ooef-loader>div{font-size: 10px;position: relative;text-indent: -9999em;border: .25rem solid #f5f5f5;border-left: .25rem solid #55c4cf;-webkit-transform: translateZ(0);-ms-transform: translateZ(0);transform: translateZ(0);-webkit-animation: ooLoading 1.1s infinite linear;animation: ooLoading 1.1s infinite linear}.ooef-loader.error>div{border-left: .25rem solid #ff4500;animation-duration: 5s}@-webkit-keyframes ooLoading{0%{-webkit-transform: rotate(0);transform: rotate(0)}100%{-webkit-transform: rotate(360deg);transform: rotate(360deg)}}@keyframes ooLoading{0%{-webkit-transform: rotate(0);transform: rotate(0)}100%{-webkit-transform: rotate(360deg);transform: rotate(360deg)}}</style><div aria-live="polite" role="status"><div>Loading...</div></div></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Order Popup -->
+    <div id="new-order-popup" class="fixed bottom-0 left-0 right-0 bg-white shadow-lg rounded-t-xl p-4 transform translate-y-full z-50 slide-in">
+        <div class="swipe-handle" onclick="closePopup()"></div>
+        <div class="flex items-center">
+            <div class="relative">
+                <img id="random-avatar" src="" alt="Customer" class="w-12 h-12 rounded-full object-cover">
+                <div class="absolute -bottom-1 -right-1 bg-green-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    <i class="fas fa-check"></i>
+                </div>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm font-medium text-gray-800">
+                    <span id="random-name"></span> dari <span id="random-city"></span> baru saja memesan Eyebrow Stencil Shaper!
+                </p>
+                <p class="text-xs text-gray-500">Baru saja</p>
+            </div>
+            <button onclick="closePopup()" class="ml-auto text-gray-400 hover:text-gray-600">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="image-modal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 opacity-0 pointer-events-none transition">
+        <div class="modal-content bg-white rounded-lg max-w-4xl w-full mx-4 relative">
+            <button onclick="closeModal()" class="absolute -top-10 right-0 text-white text-2xl focus:outline-none">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="modal-image" src="" alt="" class="w-full h-auto max-h-screen object-contain rounded-lg">
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                // Toggle answer visibility
+                answer.classList.toggle('hidden');
+                
+                // Rotate icon
+                icon.classList.toggle('rotate-180');
+            });
+        });
+
+        // Countdown Timer
+        function updateCountdown() {
+            const now = new Date();
+            const endOfDay = new Date();
+            endOfDay.setHours(23, 59, 59, 999);
+            
+            const diff = endOfDay - now;
+            
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('countdown').textContent = `(Berakhir dalam ${hours} jam ${minutes} menit ${seconds} detik)`;
+            document.getElementById('countdown-bottom').textContent = `(Berakhir dalam ${hours} jam ${minutes} menit)`;
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Dynamic Counters
+        function animateCounter(elementId, target, duration = 2000) {
+            const element = document.getElementById(elementId);
+            const start = parseInt(element.textContent);
+            const increment = Math.floor((target - start) / (duration / 16));
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                element.textContent = current;
+                
+                if ((increment > 0 && current >= target) || (increment < 0 && current <= target)) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                }
+            }, 16);
+        }
+        
+        // Randomize stock and viewers
+        const randomStock = Math.floor(Math.random() * 20) + 5;
+        const randomViewers = Math.floor(Math.random() * 500) + 1200;
+        
+        animateCounter('stock-counter', randomStock);
+        animateCounter('view-counter', randomViewers);
+
+        // New Order Popup
+        const indonesianCities = [
+            "Jakarta", "Surabaya", "Bandung", "Medan", "Semarang", 
+            "Makassar", "Denpasar", "Yogyakarta", "Palembang", "Malang"
+        ];
+        
+        const femaleNames = [
+            "Dewi", "Sari", "Rina", "Linda", "Ani", 
+            "Yuni", "Maya", "Diana", "Rini", "Siti"
+        ];
+        
+        function showNewOrderPopup() {
+            // Randomize avatar, name and city
+            const randomAvatarId = Math.floor(Math.random() * 100) + 1;
+            document.getElementById('random-avatar').src = `https://randomuser.me/api/portraits/women/${randomAvatarId}.jpg`;
+            document.getElementById('random-name').textContent = femaleNames[Math.floor(Math.random() * femaleNames.length)];
+            document.getElementById('random-city').textContent = indonesianCities[Math.floor(Math.random() * indonesianCities.length)];
+            
+            // Show popup
+            const popup = document.getElementById('new-order-popup');
+            popup.classList.remove('slide-out');
+            popup.classList.add('slide-in');
+            
+            // Auto hide after 10 seconds
+            setTimeout(() => {
+                closePopup();
+            }, 10000);
+        }
+        
+        function closePopup() {
+            const popup = document.getElementById('new-order-popup');
+            popup.classList.remove('slide-in');
+            popup.classList.add('slide-out');
+        }
+        
+        // Show popup after 3 seconds
+        setTimeout(showNewOrderPopup, 3000);
+        
+        // Show new order popup every 30-60 seconds
+        setInterval(() => {
+            if (Math.random() > 0.3) { // 70% chance to show
+                showNewOrderPopup();
+            }
+        }, 30000);
+
+        // Image Modal
+        function openModal(imageSrc) {
+            const modal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('modal-image');
+            
+            modalImage.src = imageSrc;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('image-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('image-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Initialize OrderOnline embed script
+        if (typeof xLogError != 'function') {
+            var xLogError = function (error) {
+                var req = new XMLHttpRequest();
+                var payload = JSON.stringify({
+                    url: document.location.href,
+                    line: error.line,
+                    stack: error.stack
+                });
+                var params = 'message=' + encodeURIComponent(error.name) + '&payload=' + encodeURIComponent(payload) + '&type=embed&level=error';
+                req.open('POST', 'https://api.orderonline.id/log', true);
+                req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                req.send(params);
+            };
+        }
+
+        try {
+            if (typeof xEmbedScript != 'function') {
+                var xEmbedScript = function () {
+                    !function(w, d, e, v, id, t, s) {
+                        if (d.getElementById(id)) return;
+                        t = d.createElement(e);t.async = !0;t.src = v;t.id = id;
+                        s = d.getElementsByTagName(e)[0];
+                        s.parentNode.insertBefore(t, s);
+                    }(window, document, 'script', 'https://cdn.orderonline.id/js/embed-v2-slim.min.js?v=8.0.4', 'oo-embed-js');
+                };
+            }
+
+            if (typeof xEmbedInit != 'function') {
+                var xEmbedInit = function (w, n) {
+                    if (w.ooe) return;
+                    n = w.ooe = function() {
+                        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                    };
+                    if (!w._ooe) w._ooe = n;
+                    n.push = n;n.loaded = !0;n.version = '8.0.4';n.queue = [];
+                };
+            }
+
+            xEmbedInit(window);
+            ooe('setup', 'redirect', 'https://elsa.orderonline.id');
+            ooe('init', '5f1a584d68e4c05c6f66c677', '68aeeb382186f7e58a0d3250', '68aeeb382186f7e58a0d3251', 'oo-embed-form-eyebrow-stencil-shaper-4763', {
+                "mode": "page",
+                "action": "Klik untuk pemesanan",
+                "title": "Form Pemesanan",
+                "triggerPixel": true,
+                "triggerGtm": false
+            });
+
+            if (!window.jQuery) {
+                !function(w, d, e, v, id, t, s) {
+                    if (d.getElementById(id)) return;
+                    t = d.createElement(e);t.async = !0;t.src = v;t.id = id;
+                    t.addEventListener('load', xEmbedScript);
+                    s = d.getElementsByTagName(e)[0];
+                    s.parentNode.insertBefore(t, s);
+                }(window, document, 'script', 'https://cdn.orderonline.id/js/vendor/jquery.min.js', 'oo-embed-jquery');
+            } else {
+                xEmbedScript();
+            }
+        } catch (e) {
+            xLogError(e);
+            throw e;
+        }
+    </script>
+</body>
+</html>
